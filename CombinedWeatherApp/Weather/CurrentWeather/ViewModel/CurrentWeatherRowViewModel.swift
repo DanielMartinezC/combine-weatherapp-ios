@@ -49,6 +49,18 @@ struct CurrentWeatherRowViewModel {
     return String(format: "%.1f", item.main.humidity)
   }
   
+  enum WeatherDetailInfo: Hashable {
+    case humidity
+    case minTemperature
+    case maxTemperature
+    case temperature
+  }
+  
+  var weatherDetails: Array<String> {
+    [humidity, minTemperature, maxTemperature, temperature]
+//    return [WeatherDetailInfo.humidity: humidity, WeatherDetailInfo.minTemperature: minTemperature, WeatherDetailInfo.maxTemperature: maxTemperature, WeatherDetailInfo.temperature: temperature]
+  }
+  
   var coordinate: CLLocationCoordinate2D {
     return CLLocationCoordinate2D.init(latitude: item.coord.lat, longitude: item.coord.lon)
   }

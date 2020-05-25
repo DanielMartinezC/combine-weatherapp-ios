@@ -37,10 +37,13 @@ struct CurrentWeatherView: View {
   }
   
   var body: some View {
-    List(content: content)
+    
+    ZStack(content: content)
+//    List(content: content)
       .onAppear(perform: currentViewModel.refresh)
       .navigationBarTitle(currentViewModel.city)
-      .listStyle(GroupedListStyle())
+      .listStyle(PlainListStyle())
+      .background(Color.white)
   }
 }
 

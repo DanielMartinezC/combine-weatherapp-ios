@@ -36,37 +36,84 @@ struct CurrentWeatherRow: View {
   }
   
   var body: some View {
-    VStack(alignment: .leading) {
-      MapView(coordinate: viewModel.coordinate)
-        .cornerRadius(25)
-        .frame(height: 300)
-        .disabled(true)
-      
-      VStack(alignment: .leading) {
-        HStack {
-          Text("☀️ Temperature:")
-          Text("\(viewModel.temperature)°")
-            .foregroundColor(.gray)
+    
+    ZStack {
+        RoundedRectangle(cornerRadius: 25, style: .continuous)
+            .fill(Color.white)
+            .shadow(radius: 10)
+
+        VStack {
+            MapView(coordinate: viewModel.coordinate)
+             .cornerRadius(25)
+             .disabled(true)
+             .padding(.bottom, 20)
+
+            tempratureView
+            
+            maxTempratureView
+            
+            minTempratureView
+            
+            humidityView
         }
-        
-        HStack {
-          Text("📈 Max temperature:")
-          Text("\(viewModel.maxTemperature)°")
-            .foregroundColor(.gray)
-        }
-        
-        HStack {
-          Text("📉 Min temperature:")
-          Text("\(viewModel.minTemperature)°")
-            .foregroundColor(.gray)
-        }
-        
-        HStack {
-          Text("💧 Humidity:")
-          Text(viewModel.humidity)
-            .foregroundColor(.gray)
-        }
-      }
+        .padding(20)
+        .multilineTextAlignment(.center)
     }
+    .padding(20) 
+  }
+}
+
+extension CurrentWeatherRow {
+  
+  var tempratureView: some View {
+    HStack {
+      Text("☀️ Temperature")
+      
+      Spacer()
+      
+      Text("\(viewModel.temperature)°")
+        .frame(alignment: .trailing)
+        .foregroundColor(.gray)
+    }
+    .padding(.bottom, 20)
+  }
+  
+  var minTempratureView: some View {
+    HStack {
+      Text("📉 Min temperature")
+      
+      Spacer()
+      
+      Text("\(viewModel.minTemperature)°")
+        .frame(alignment: .trailing)
+        .foregroundColor(.gray)
+    }
+    .padding(.bottom, 20)
+  }
+  
+  var maxTempratureView: some View {
+    HStack {
+      Text("📈 Max temperature")
+      
+      Spacer()
+      
+      Text("\(viewModel.maxTemperature)°")
+        .frame(alignment: .trailing)
+        .foregroundColor(.gray)
+    }
+    .padding(.bottom, 20)
+  }
+  
+  var humidityView: some View {
+    HStack {
+      Text("💧 Humidity")
+            
+      Spacer()
+      
+      Text("\(viewModel.humidity)°")
+        .frame(alignment: .trailing)
+        .foregroundColor(.gray)
+    }
+    .padding(.bottom, 20)
   }
 }
