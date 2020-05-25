@@ -26,3 +26,41 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+import SwiftUI
+import Combine
+
+class CurrentWeatherViewModel: ObservableObject, Identifiable {
+  
+  // Expose an optional CurrentWeatherRowViewModel as the data source.
+  @Published var dataSource: CurrentWeatherRowViewModel?
+  
+  let city: String
+  private let weatherFetcher: WeatherFetchable
+  private var disposables = Set<AnyCancellable>()
+  
+  init(city: String, weatherFetcher: WeatherFetchable) {
+    self.city = city
+    self.weatherFetcher = weatherFetcher
+  }
+  
+  func refresh() {
+    // Transform new values to a CurrentWeatherRowViewModel as they come in the form of a CurrentWeatherForecastResponse.
+    weatherFetcher.currentWeatherForecast(forCity: city)
+      .map(CurrentWeatherRowViewModel.init)
+      .receive(on: DispatchQueue.main)
+    .sink(
+      receiveCompletion: { [weak self] value in
+        guard let self = self else { return }
+        switch value {
+        case .failure:
+          self.dataSource = nil
+        case .finished:
+          break
+        }
+      },
+      receiveValue: { value in
+        self.dataSource = value
+    })
+    .store(in: &disposables)
+  }
+}

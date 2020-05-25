@@ -26,3 +26,40 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+import SwiftUI
+
+struct CurrentWeatherView: View {
+  
+  @ObservedObject var currentViewModel: CurrentWeatherViewModel
+  
+  init(viewModel: CurrentWeatherViewModel) {
+    self.currentViewModel = viewModel
+  }
+  
+  var body: some View {
+    List(content: content)
+      .onAppear(perform: currentViewModel.refresh)
+      .navigationBarTitle(currentViewModel.city)
+      .listStyle(GroupedListStyle())
+  }
+}
+
+private extension CurrentWeatherView {
+  
+  func content() -> some View {
+    guard let viewModel = currentViewModel.dataSource else {
+      return AnyView(loading)
+    }
+    
+    return AnyView(details(for: viewModel))
+  }
+  
+  func details(for viewModel: CurrentWeatherRowViewModel) -> some View {
+    CurrentWeatherRow(viewModel: viewModel)
+  }
+  
+  var loading: some View  {
+    Text("Loading \(currentViewModel.city)'s weather...")
+    .foregroundColor(.gray)
+  }
+}

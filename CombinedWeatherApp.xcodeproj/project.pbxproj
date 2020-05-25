@@ -93,6 +93,50 @@
 			path = CombinedWeatherApp;
 			sourceTree = "<group>";
 		};
+		66CEE447247B3E8400AC18E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B263E4B522C78C95009D0E0E /* WeeklyWeatherView.swift */,
+				B263E4B722C78C95009D0E0E /* DailyWeatherRow.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		66CEE448247B3E8D00AC18E8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B263E4B622C78C95009D0E0E /* WeeklyWeatherViewModel.swift */,
+				B263E4B822C78C95009D0E0E /* DailyWeatherRowViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		66CEE449247B3EA800AC18E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B263E4B122C78C95009D0E0E /* CurrentWeatherView.swift */,
+				B263E4C622C7AB37009D0E0E /* CurrentWeatherRow.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		66CEE44A247B3EAE00AC18E8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B263E4C222C7923C009D0E0E /* CurrentWeatherViewModel.swift */,
+				B263E4B022C78C95009D0E0E /* CurrentWeatherRowViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		66CEE44B247B3EBA00AC18E8 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				B222515B22D370C60035C1A1 /* WeeklyWeatherBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		B22B78A122DF3C92004F21B9 /* Formatters */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,10 +156,8 @@
 		B263E4AF22C78C95009D0E0E /* CurrentWeather */ = {
 			isa = PBXGroup;
 			children = (
-				B263E4B122C78C95009D0E0E /* CurrentWeatherView.swift */,
-				B263E4C222C7923C009D0E0E /* CurrentWeatherViewModel.swift */,
-				B263E4C622C7AB37009D0E0E /* CurrentWeatherRow.swift */,
-				B263E4B022C78C95009D0E0E /* CurrentWeatherRowViewModel.swift */,
+				66CEE449247B3EA800AC18E8 /* View */,
+				66CEE44A247B3EAE00AC18E8 /* ViewModel */,
 			);
 			path = CurrentWeather;
 			sourceTree = "<group>";
@@ -123,11 +165,9 @@
 		B263E4B422C78C95009D0E0E /* WeeklyWeather */ = {
 			isa = PBXGroup;
 			children = (
-				B263E4B522C78C95009D0E0E /* WeeklyWeatherView.swift */,
-				B263E4B622C78C95009D0E0E /* WeeklyWeatherViewModel.swift */,
-				B222515B22D370C60035C1A1 /* WeeklyWeatherBuilder.swift */,
-				B263E4B722C78C95009D0E0E /* DailyWeatherRow.swift */,
-				B263E4B822C78C95009D0E0E /* DailyWeatherRowViewModel.swift */,
+				66CEE447247B3E8400AC18E8 /* View */,
+				66CEE448247B3E8D00AC18E8 /* ViewModel */,
+				66CEE44B247B3EBA00AC18E8 /* Builder */,
 			);
 			path = WeeklyWeather;
 			sourceTree = "<group>";
